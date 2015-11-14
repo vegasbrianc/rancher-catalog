@@ -1,11 +1,11 @@
 .catalog:
   name: Zookeeper
-  version: 3.4.6-rancher1
+  version: "3.4.6-rancher1"
   description: |
     Apache Zookeeper node cluster.
   uuid: zookeeper-0
   questions:
-    variable: "scale"
+    - variable: "scale"
       description: "Number of Zookeeper nodes. Note: it should be an odd number"
       label: "Number of Nodes:"
       required: true
