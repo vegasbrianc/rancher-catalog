@@ -1,0 +1,10 @@
+ghost:
+    image: docker:ghost:0.7.1
+    ports:
+        - ${PUBLIC_PORT}:2368
+    volume_driver: ${VOLUME_DRIVER}
+    volumes:
+        - ${VOLUME_NAME}:/var/lib/ghost
+    labels: 
+        io.rancher.scheduler.affinity:container_label_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
+

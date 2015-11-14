@@ -1,0 +1,26 @@
+.catalog:
+    name: "Ghost"
+    version: "v0.1"
+    description: "Ghost - Just a blogging platform" 
+    uuid: "ghost-0"
+    questions:
+     - variable: "PUBLIC_PORT"
+       description: "The port to serve Ghost on"
+       label: "Public Port"
+       required: true
+       type: "string"
+       default: "80"
+     - variable: "VOLUME_DRIVER"
+       description: "The volume driver to use"
+       label: "Volume Driver"
+       require: true
+       type: "string"
+       default: "convoy-gluster"
+     - variable: "VOLUME_NAME"
+       description: "The name of the peristent volume to create and use"
+       label: "Volume Name"
+       required: true
+       type: "string"
+       default: "blogdata"
+ghost:
+    scale: 2
