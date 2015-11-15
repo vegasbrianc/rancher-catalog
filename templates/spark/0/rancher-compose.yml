@@ -1,0 +1,67 @@
+.catalog:
+  name: "Spark"
+  version: "1.5.2-rancher1"
+  description: "Lightening-fast cluster computing"
+  uuid: spark-0
+  minimum_rancher_version: v0.46.0
+  questions:
+    - variable: "cluster_name"
+      label: "Cluster Name"
+      description: "A name to id the cluster. Should be unique within your environment"
+      required: true
+      type: "string"
+    - variable: "zookeeper_service"
+      description: |
+        Zookeeper is used for master leader election. Please
+        link to a zookeeper service.
+      label: "Zookeeper Cluster"
+      required: true
+      default: "zookeeper/zookeeper"
+      type: "service"
+    - variable: "spark_master_spark_env"
+      description: |
+        Place entries to be added into masters /etc/spark/spark-env.sh file.
+        One per line.
+      label: "Spark master spark-env.sh entries"
+      type: "multiline"
+      default: |
+        SPARK_DAEMON_JAVA_OPTS="${JAVA_OPTS} \
+        -Dspark.deploy.recoveryMode=ZOOKEEPER \
+        -Dspark.deploy.zookeeper.url=${ZK_STRING} \
+        -Dspark.deploy.zookeeper.dir=/spark/${cluster_name}"
+    - variable: "spark_worker_spark_env"
+      description: |
+        Place entries to be added into the workers /etc/spark/spark-env.sh file.
+        One per line.
+      label: "Spark worker spark-env.sh entries"
+      type: "multiline"
+      default: ""
+    - variable: "masters_count"
+      label: "Number of masters"
+      description: |
+        The default is to run with Zookeeper, so multiple
+        masters can be deployed for resiliancy. 
+      type: "int"
+      required: true
+      default: 1
+    - variable: "workers_count"
+      label: "Number of workers"
+      description: |
+        Number of worker nodes to deploy.
+      type: "int"
+      required: true
+      default: 1
+spark-master:
+  scale: ${masters_count}
+  metadata:
+    spark-env: |
+      # Rancher / Confd generated file.
+      cluster_name=${cluster_name}
+      ${spark_master_spark_env}
+spark-worker:
+  scale: 1
+  metadata:
+    spark-env: |
+      export SPARK_WORKER_DIR=/spark/work
+      export SPARK_LOCAL_DIRS=/spark/work
+      ${spark_worker_spark_env}
