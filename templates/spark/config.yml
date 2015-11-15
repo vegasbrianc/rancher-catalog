@@ -1,0 +1,5 @@
+name: Apache Spark
+description: |
+  Lightening-fast cluster computing
+version: 1.5.2-rancher1
+category: "Big Data"
