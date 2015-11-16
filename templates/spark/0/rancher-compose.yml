@@ -1,7 +1,7 @@
 .catalog:
   name: "Spark"
   version: "1.5.2-rancher1"
-  description: "Lightening-fast cluster computing"
+  description: "Lightning-fast cluster computing"
   uuid: spark-0
   minimum_rancher_version: v0.46.0
   questions:
