@@ -1,5 +1,6 @@
 name: odoo
 description: |
   Open Source CRM & ERP System
-version: v0
+version: v 9.0
 category: CRM
+requires: postgres 
