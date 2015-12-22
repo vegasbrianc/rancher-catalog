@@ -1,4 +1,8 @@
-
+.catalog:
+  name: "odoo"
+  version: "v 9.0"
+  description: "Open Source ERP & CRM solution"
+  uuid: odoo-0
 db:
   scale: 1
 odoo:
