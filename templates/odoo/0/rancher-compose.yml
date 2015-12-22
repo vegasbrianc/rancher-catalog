@@ -1,0 +1,5 @@
+
+db:
+  scale: 1
+odoo:
+  scale: 1

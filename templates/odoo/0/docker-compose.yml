@@ -1,0 +1,19 @@
+db:
+  environment:
+    POSTGRES_USER: odoo
+    POSTGRES_PASSWORD: odoo
+  labels:
+    io.rancher.container.pull_image: always
+  tty: true
+  image: postgres
+  stdin_open: true
+odoo:
+  ports:
+  - 8069:8069/tcp
+  labels:
+    io.rancher.container.pull_image: always
+  tty: true
+  image: odoo
+  links:
+  - db:db
+  stdin_open: true
